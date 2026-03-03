@@ -751,18 +751,7 @@ function Footer() {
    PLAY
 ───────────────────────────────────────── */
 const PHOTOS = [
-  { id: 1, bg: "#2a2a2a", label: "Add photo", height: 580, caption: "Caption here", category: "PHOTOGRAPHY" },
-  { id: 2, bg: "#3a3530", label: "Add photo", height: 280, caption: "Caption here", category: "LIFE" },
-  { id: 3, bg: "#2d3035", label: "Add photo", height: 420, caption: "Caption here", category: "TRAVEL" },
-  { id: 4, bg: "#302a2d", label: "Add photo", height: 340, caption: "Caption here", category: "PHOTOGRAPHY" },
-  { id: 5, bg: "#2a302d", label: "Add photo", height: 500, caption: "Caption here", category: "LIFE" },
-  { id: 6, bg: "#2d2a30", label: "Add photo", height: 260, caption: "Caption here", category: "TRAVEL" },
-  { id: 7, bg: "#303028", label: "Add photo", height: 380, caption: "Caption here", category: "LIFE" },
-  { id: 8, bg: "#283030", label: "Add photo", height: 460, caption: "Caption here", category: "PHOTOGRAPHY" },
-  { id: 9, bg: "#302830", label: "Add photo", height: 310, caption: "Caption here", category: "TRAVEL" },
-  { id: 10, bg: "#2a2830", label: "Add photo", height: 540, caption: "Caption here", category: "LIFE" },
-  { id: 11, bg: "#30282a", label: "Add photo", height: 290, caption: "Caption here", category: "PHOTOGRAPHY" },
-  { id: 12, bg: "#283028", label: "Add photo", height: 440, caption: "Caption here", category: "TRAVEL" },
+  { id: 1, src: "/grad_photo.jpeg", height: 580, caption: "HIM.", category: "LIFE" }
 ];
 
 function Play() {
@@ -789,17 +778,16 @@ function Play() {
               overflow: "hidden",
               lineHeight: 0,
               cursor: "pointer",
-            }}
-          >
+            }}>
             {/* Photo placeholder — swap for <img> */}
             <div style={{
               width: "100%",
               height: p.height,
-              background: p.bg,
-              display: "flex", alignItems: "center", justifyContent: "center",
+              overflow: "hidden",
               transition: "filter 0.3s",
               filter: hovered === p.id ? "brightness(0.6)" : "brightness(1)",
             }}>
+              <img src={p.src} alt={p.caption} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               {/* Orange accent dot like reference */}
               <div style={{
                 position: "absolute", top: 16, left: 16,
