@@ -1,17 +1,17 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { PROJECTS } from "../data";
 
-export default function Projects({ onProjectClick }) {
+export default function Projects() {
   const [hovered, setHovered] = useState(null);
   const bannerColors = ["#d4d0c8", "#c8cdd4", "#cdd4c8", "#d4c8c8"];
 
   return (
     <section style={{ borderBottom: "1px solid #e8e6e0", borderLeft: "1px solid #e8e6e0", borderRight: "1px solid #e8e6e0" }}>
       {PROJECTS.map((p, i) => (
-        <a
+        <Link
           key={p.id}
-          href="#"
-          onClick={(e) => { e.preventDefault(); onProjectClick(p); }}
+          to={`/projects/${p.id}`}
           onMouseEnter={() => setHovered(i)}
           onMouseLeave={() => setHovered(null)}
           style={{
@@ -83,7 +83,7 @@ export default function Projects({ onProjectClick }) {
               fontSize: "0.85rem", color: "#777", lineHeight: 1.75,
             }}>{p.desc}</p>
           </div>
-        </a>
+        </Link>
       ))}
     </section>
   );

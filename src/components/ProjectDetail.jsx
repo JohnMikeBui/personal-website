@@ -1,11 +1,24 @@
-export default function ProjectDetail({ project, onBack }) {
-  const bannerColor = "#d4d0c8";
+import { useParams, useNavigate } from "react-router-dom";
+import { PROJECTS } from "../data";
+
+export default function ProjectDetail() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const project = PROJECTS.find((p) => p.id === id);
+
+  if (!project) {
+    return (
+      <div style={{ maxWidth: 900, margin: "0 auto", padding: "3rem 2.5rem" }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#999" }}>Project not found.</p>
+      </div>
+    );
+  }
 
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: "3rem 2.5rem" }}>
       {/* Back */}
       <button
-        onClick={onBack}
+        onClick={() => navigate("/")}
         style={{
           background: "none", border: "none", padding: 0,
           fontFamily: "'DM Mono', monospace", fontSize: "0.7rem",
@@ -20,7 +33,7 @@ export default function ProjectDetail({ project, onBack }) {
       {/* Hero image */}
       <div style={{
         width: "100%", height: 520, overflow: "hidden",
-        background: bannerColor, marginBottom: "2.5rem",
+        background: "#d4d0c8", marginBottom: "2.5rem",
       }}>
         <img
           src={project.src}
