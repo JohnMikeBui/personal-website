@@ -5,6 +5,8 @@ import Projects from "./components/Projects";
 import ProjectDetail from "./components/ProjectDetail";
 import About from "./components/About";
 import Play from "./components/Play";
+import Blog from "./components/Blog";
+import BlogPost from "./components/BlogPost";
 import Footer from "./components/Footer";
 
 function Nav() {
@@ -14,6 +16,7 @@ function Nav() {
   const active =
     path.startsWith("/about") ? "about" :
     path.startsWith("/play") ? "play" :
+    path.startsWith("/blog") ? "blog" :
     "work";
 
   return (
@@ -30,6 +33,7 @@ function Nav() {
           { label: "work", to: "/" },
           { label: "about", to: "/about" },
           { label: "play", to: "/play" },
+          { label: "blog", to: "/blog" },
         ].map(({ label, to }) => (
           <Link
             key={label}
@@ -91,6 +95,16 @@ function AnimatedRoutes() {
         <Route path="/projects/:id" element={
           <main style={{ paddingTop: 48 }}>
             <ProjectDetail />
+          </main>
+        } />
+        <Route path="/blog" element={
+          <main style={{ paddingTop: 48 }}>
+            <Blog />
+          </main>
+        } />
+        <Route path="/blog/:slug" element={
+          <main style={{ paddingTop: 48 }}>
+            <BlogPost />
           </main>
         } />
       </Routes>
