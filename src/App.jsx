@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import Hero from "./components/Hero";
 import Projects from "./components/Projects";
 import ProjectDetail from "./components/ProjectDetail";
@@ -51,10 +51,51 @@ function Nav() {
   );
 }
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
-  return null;
+function AnimatedRoutes() {
+  const location = useLocation();
+  const [displayed, setDisplayed] = useState(location);
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    if (location.pathname === displayed.pathname) return;
+    setOpacity(0);
+    const t = setTimeout(() => {
+      setDisplayed(location);
+      window.scrollTo(0, 0);
+      setOpacity(1);
+    }, 250);
+    return () => clearTimeout(t);
+  }, [location]);
+
+  return (
+    <div style={{ opacity, transition: "opacity 0.25s ease" }}>
+      <Routes location={displayed}>
+        <Route path="/" element={
+          <main style={{ paddingTop: 0 }}>
+            <Hero />
+            <Projects />
+            <Footer />
+          </main>
+        } />
+        <Route path="/about" element={
+          <main style={{ paddingTop: 48 }}>
+            <About />
+            <Footer />
+          </main>
+        } />
+        <Route path="/play" element={
+          <main style={{ paddingTop: 48 }}>
+            <Play />
+          </main>
+        } />
+        <Route path="/projects/:id" element={
+          <main style={{ paddingTop: 48 }}>
+            <ProjectDetail />
+          </main>
+        } />
+      </Routes>
+    </div>
+  );
 }
 
 export default function App() {
@@ -89,32 +130,7 @@ export default function App() {
   return (
     <div style={{ background: "#f9f8f5", minHeight: "100vh" }}>
       <Nav />
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={
-          <main style={{ paddingTop: 0 }}>
-            <Hero />
-            <Projects />
-            <Footer />
-          </main>
-        } />
-        <Route path="/about" element={
-          <main style={{ paddingTop: 48 }}>
-            <About />
-            <Footer />
-          </main>
-        } />
-        <Route path="/play" element={
-          <main style={{ paddingTop: 48 }}>
-            <Play />
-          </main>
-        } />
-        <Route path="/projects/:id" element={
-          <main style={{ paddingTop: 48 }}>
-            <ProjectDetail />
-          </main>
-        } />
-      </Routes>
+      <AnimatedRoutes />
     </div>
   );
 }
