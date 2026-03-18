@@ -2,11 +2,58 @@ export const PROJECTS = [
   {
     id: "01",
     title: "Shimon",
-    category: "Robotics/Human-Computer Interactions",
+    category: "Robotics / Human-Computer Interactions",
     year: "2025",
     desc: "Georgia Tech's Famous Marimba Playing Robot Now With Emotion Recognition!",
-    url: "#",
     src: "/photos/shimon.jpg",
+    longDesc:
+      "Shimon is Georgia Tech's award-winning marimba-playing robot. This project extends Shimon's capabilities by integrating real-time emotion recognition — allowing the robot to perceive audience reactions and adapt its musical performance accordingly. Using computer vision and deep learning, Shimon can now read facial expressions and respond with changes in tempo, dynamics, and improvisation style.",
+    tech: ["Python", "OpenCV", "TensorFlow", "ROS", "C++"],
+    links: [
+      { label: "GitHub", url: "#" },
+    ],
+  },
+  {
+    id: "02",
+    title: "SkillSwap",
+    category: "iOS / Social",
+    year: "2025",
+    desc: "Find people with complementary skills and learning interests, then meet up to swap what you know.",
+    src: "/photos/skillswap.jpg",
+    longDesc:
+      "SkillSwap is an iOS app that connects people based on what they know and what they want to learn. The app matches users with complementary skill sets — someone who knows guitar and wants to learn Spanish gets paired with someone who knows Spanish and wants to learn guitar. From there, users can browse profiles, chat, and schedule in-person meetups to exchange knowledge.",
+    tech: ["Swift", "SwiftUI", "Firebase", "CoreLocation", "Xcode"],
+    links: [
+      { label: "GitHub", url: "#" },
+    ],
+  },
+  {
+    id: "03",
+    title: "ShoeBox AI",
+    category: "Mobile / Machine Learning",
+    year: "2025",
+    desc: "Snap a photo of any shoe and instantly get the name, market price, and similar matches.",
+    src: "/photos/shoebox.jpg",
+    longDesc:
+      "ShoeBox AI lets you point your camera at any sneaker or shoe and immediately identifies it. The app returns the exact model name, current resale and retail pricing, and a curated list of visually similar alternatives. Built on a custom-trained image classification model, ShoeBox AI handles everything from rare sneakers to everyday footwear.",
+    tech: ["Python", "PyTorch", "React Native", "FastAPI", "AWS S3"],
+    links: [
+      { label: "GitHub", url: "#" },
+    ],
+  },
+  {
+    id: "04",
+    title: "Hooper",
+    category: "Embedded Systems / IoT",
+    year: "2025",
+    desc: "An embedded device that displays live NBA game time, quarter, and scores in real time.",
+    src: "/photos/hooper.jpg",
+    longDesc:
+      "Hooper is a compact embedded device that pulls live NBA game data and displays the current time, quarter, and scores for any active game. Designed to sit on your desk or shelf, it gives you a real-time scoreboard without needing to check your phone. The device syncs with the NBA API over Wi-Fi and updates automatically as the game progresses.",
+    tech: ["C++", "Raspberry Pi", "NBA API", "MQTT", "Python"],
+    links: [
+      { label: "GitHub", url: "#" },
+    ],
   },
 ];
 

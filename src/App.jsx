@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Hero from "./components/Hero";
 import Projects from "./components/Projects";
+import ProjectDetail from "./components/ProjectDetail";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Play from "./components/Play";
@@ -11,6 +12,7 @@ export default function App() {
   const [page, setPage] = useState("home");
   const [visible, setVisible] = useState(true);
   const [pendingNav, setPendingNav] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
   const scrollActive = useActiveSection();
   const active = page === "about" ? "about" : page === "play" ? "play" : scrollActive;
 
@@ -46,6 +48,11 @@ export default function App() {
     if (targetPage === page && !scrollId) return;
     setVisible(false);
     setPendingNav({ targetPage, scrollId });
+  };
+
+  const openProject = (project) => {
+    setSelectedProject(project);
+    navigateTo("project", null);
   };
 
   useEffect(() => {
@@ -109,10 +116,17 @@ export default function App() {
     <main style={{ paddingTop: 48 }}>
       <Play />
     </main>
+  ) : page === "project" && selectedProject ? (
+    <main style={{ paddingTop: 48 }}>
+      <ProjectDetail
+        project={selectedProject}
+        onBack={() => navigateTo("home", "work")}
+      />
+    </main>
   ) : (
     <main style={{ paddingTop: 0 }}>
       <Hero />
-      <Projects />
+      <Projects onProjectClick={openProject} />
       <Footer />
     </main>
   );

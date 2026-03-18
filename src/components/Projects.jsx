@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PROJECTS } from "../data";
 
-export default function Projects() {
+export default function Projects({ onProjectClick }) {
   const [hovered, setHovered] = useState(null);
   const bannerColors = ["#d4d0c8", "#c8cdd4", "#cdd4c8", "#d4c8c8"];
 
@@ -10,7 +10,8 @@ export default function Projects() {
       {PROJECTS.map((p, i) => (
         <a
           key={p.id}
-          href={p.url}
+          href="#"
+          onClick={(e) => { e.preventDefault(); onProjectClick(p); }}
           onMouseEnter={() => setHovered(i)}
           onMouseLeave={() => setHovered(null)}
           style={{
